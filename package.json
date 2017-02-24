@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/jakesidsmith/watch-less-do-more#readme",
   "devDependencies": {
+    "bootstrap": "3.3.7",
     "eslint-config-jakesidsmith": "git+https://github.com/jakesidsmith/eslint-config-jakesidsmith.git"
   },
   "dependencies": {
