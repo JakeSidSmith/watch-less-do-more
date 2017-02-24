@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "bin": "src/cli.js",
   "scripts": {
+    "start": "http-server examples/ -c-0 -o",
     "test": "eslint src/"
   },
   "repository": {
@@ -28,7 +29,8 @@
   "homepage": "https://github.com/jakesidsmith/watch-less-do-more#readme",
   "devDependencies": {
     "bootstrap": "3.3.7",
-    "eslint-config-jakesidsmith": "git+https://github.com/jakesidsmith/eslint-config-jakesidsmith.git"
+    "eslint-config-jakesidsmith": "git+https://github.com/jakesidsmith/eslint-config-jakesidsmith.git",
+    "http-server": "0.9.0"
   },
   "dependencies": {
     "less": "2.7.2",
