@@ -13,6 +13,7 @@
   function watchLessDoMore (options) {
     var lessOptions = {
       filename: path.resolve(options.input),
+      compress: options.compress,
       sourceMap: options.sourceMap ? {
         sourceMapURL: options.sourceMapURL,
         sourceMapBasepath: options.sourceMapBasepath,
