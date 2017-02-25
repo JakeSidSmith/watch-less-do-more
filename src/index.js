@@ -4,9 +4,10 @@
 
   var path = require('path');
   var fs = require('fs');
+
+  var _ = require('underscore');
   var mkdirp = require('mkdirp');
   var less = require('less');
-  var _ = require('underscore');
 
   var UTF8 = 'utf8';
   // var CWD = process.cwd();

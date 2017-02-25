@@ -4,7 +4,9 @@
 
 (function () {
 
+  var _ = require('underscore');
   var yargs = require('yargs');
+
   var watchLessDoMore = require('./index');
 
   var argv = yargs
@@ -26,6 +28,23 @@
     .version()
     .argv;
 
-  watchLessDoMore({input: argv.input, output: argv.output});
+  var inputs = [].concat(argv.input);
+  var outputs = [].concat(argv.output);
+
+  if (inputs.length !== outputs.length) {
+    console.error(
+      'Matching number of input & output paths are required: ' +
+      inputs.length +
+      ' input paths provided and ' +
+      outputs.length +
+      ' output paths provided'
+    );
+  } else if (inputs.length > 1) {
+    _.each(inputs, function (input, index) {
+      watchLessDoMore({input: input, output: outputs[index]});
+    });
+  } else {
+    watchLessDoMore({input: inputs[0], output: outputs[0]});
+  }
 
 })();
