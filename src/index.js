@@ -4,6 +4,7 @@
 
   var path = require('path');
   var fs = require('fs');
+  var mkdirp = require('mkdirp');
   var less = require('less');
   var _ = require('underscore');
 
@@ -14,9 +15,12 @@
 
     var parseFileAndWatchImports;
     var watchers = [];
+    var inputFilePath = path.resolve(options.input);
+    var outputFilePath = path.resolve(options.output);
+    var outputDirectory = path.dirname(outputFilePath);
 
     var lessOptions = {
-      filename: path.resolve(options.input),
+      filename: inputFilePath,
       compress: options.compress,
       sourceMap: options.sourceMap ? {
         sourceMapURL: options.sourceMapURL,
@@ -50,7 +54,12 @@
     }
 
     function onFileChange (eventType, filename) {
-      console.log(eventType, filename);
+      mkdirp(outputDirectory, function (error) {
+        if (error) {
+          console.error(error);
+          process.exit(1);
+        }
+      });
     }
 
     function watchFiles (filePaths) {
@@ -66,7 +75,7 @@
       });
     }
 
-    parseFileAndWatchImports = function (inputFilePath) {
+    parseFileAndWatchImports = function () {
       readFile(inputFilePath, function (result) {
         parseLess(result, function (output) {
           destroyWatchers();
@@ -75,7 +84,7 @@
       });
     };
 
-    parseFileAndWatchImports(path.resolve(options.input));
+    parseFileAndWatchImports();
   }
 
   module.exports = watchLessDoMore;
