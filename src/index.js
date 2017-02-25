@@ -49,11 +49,14 @@
       });
     }
 
+    function onFileChange (eventType, filename) {
+      console.log(eventType, filename);
+    }
+
     function watchFiles (filePaths) {
       _.each(filePaths, function (filePath) {
-        watchers.push(fs.watch(filePath, UTF8, function (eventType, filename) {
-          console.log(eventType, filename);
-        }));
+        var watcher = fs.watch(filePath, UTF8, _.debounce(onFileChange, 2000, true));
+        watchers.push(watcher);
       });
     }
 
