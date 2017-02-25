@@ -53,18 +53,22 @@
       });
     }
 
-    function onFileChange (eventType, filename) {
+    function outputCSS (css) {
       mkdirp(outputDirectory, function (error) {
         if (error) {
           console.error(error);
           process.exit(1);
+        } else {
+          fs.writeFile(outputFilePath, css, UTF8, function () {
+            console.log('Built ' + options.output);
+          });
         }
       });
     }
 
     function watchFiles (filePaths) {
       _.each(filePaths, function (filePath) {
-        var watcher = fs.watch(filePath, UTF8, _.debounce(onFileChange, 2000, true));
+        var watcher = fs.watch(filePath, UTF8, _.debounce(parseFileAndWatchImports, 2000, true));
         watchers.push(watcher);
       });
     }
@@ -79,6 +83,9 @@
       readFile(inputFilePath, function (result) {
         parseLess(result, function (output) {
           destroyWatchers();
+
+          outputCSS(output.css);
+
           watchFiles([inputFilePath].concat(output.imports));
         });
       });

@@ -1,6 +1,6 @@
 node_modules/**
 coverage/**
-build/**
+examples/build/**
 .nyc_output/**
 
 .DS_Store
