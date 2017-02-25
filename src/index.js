@@ -68,7 +68,7 @@
 
     function watchFiles (filePaths) {
       _.each(filePaths, function (filePath) {
-        var watcher = fs.watch(filePath, UTF8, _.debounce(parseFileAndWatchImports, 2000, true));
+        var watcher = fs.watch(filePath, UTF8, parseFileAndWatchImports);
         watchers.push(watcher);
       });
     }
@@ -79,7 +79,7 @@
       });
     }
 
-    parseFileAndWatchImports = function () {
+    parseFileAndWatchImports = _.debounce(function () {
       readFile(inputFilePath, function (result) {
         parseLess(result, function (output) {
           destroyWatchers();
@@ -89,7 +89,7 @@
           watchFiles([inputFilePath].concat(output.imports));
         });
       });
-    };
+    }, 2000, true);
 
     parseFileAndWatchImports();
   }
