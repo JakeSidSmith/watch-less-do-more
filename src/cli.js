@@ -10,7 +10,8 @@
   var watchLessDoMore = require('./index');
 
   var argv = yargs
-    .usage('watch-less-do-more --input=src/index.less --output=build/index.css')
+    .usage('$0 -i=source.less -o=build.css')
+    .example('$0 -i=source-1.less -i=source-2.less -o=build-1.css -o=build-2.css', 'Watch mutliple less files')
     .options({
       input: {
         alias: 'i',
