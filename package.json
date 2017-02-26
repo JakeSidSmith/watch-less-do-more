@@ -33,6 +33,7 @@
     "http-server": "0.9.0"
   },
   "dependencies": {
+    "chokidar": "1.6.1",
     "less": "2.7.2",
     "mkdirp": "0.5.1",
     "underscore": "1.8.3",

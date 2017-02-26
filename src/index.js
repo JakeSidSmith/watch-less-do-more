@@ -6,6 +6,7 @@
   var fs = require('fs');
 
   var _ = require('underscore');
+  var chokidar = require('chokidar');
   var mkdirp = require('mkdirp');
   var less = require('less');
 
@@ -14,11 +15,14 @@
 
   function watchLessDoMore (options) {
 
+    var initialized = false;
     var parseFileAndWatchImports;
-    var watchers = [];
+    var watchedPaths = [];
     var inputFilePath = path.resolve(options.input);
     var outputFilePath = path.resolve(options.output);
     var outputDirectory = path.dirname(outputFilePath);
+
+    var watcher = chokidar.watch(inputFilePath, {persistent: true});
 
     var lessOptions = {
       filename: inputFilePath,
@@ -36,7 +40,9 @@
       fs.readFile(filePath, UTF8, function (error, result) {
         if (error) {
           console.error(error.message);
-          process.exit(1);
+          if (!initialized) {
+            process.exit(1);
+          }
         } else {
           callback(result);
         }
@@ -47,7 +53,9 @@
       less.render(lessSource, lessOptions, function (error, result) {
         if (error) {
           console.error(error.message);
-          process.exit(1);
+          if (!initialized) {
+            process.exit(1);
+          }
         } else {
           callback(result);
         }
@@ -58,7 +66,9 @@
       mkdirp(outputDirectory, function (error) {
         if (error) {
           console.error(error);
-          process.exit(1);
+          if (!initialized) {
+            process.exit(1);
+          }
         } else {
           fs.writeFile(outputFilePath, css, UTF8, function () {
             console.log('Built ' + options.output);
@@ -68,16 +78,12 @@
     }
 
     function watchFiles (filePaths) {
-      _.each(filePaths, function (filePath) {
-        var watcher = fs.watch(filePath, UTF8, parseFileAndWatchImports);
-        watchers.push(watcher);
-      });
+      watchedPaths = filePaths;
+      watcher.add(watchedPaths);
     }
 
     function destroyWatchers () {
-      _.each(watchers, function (watcher) {
-        watcher.close();
-      });
+      watcher.unwatch(watchedPaths);
     }
 
     parseFileAndWatchImports = _.debounce(function () {
@@ -87,10 +93,14 @@
 
           outputCSS(output.css);
 
-          watchFiles([inputFilePath].concat(output.imports));
+          watchFiles(output.imports);
+
+          initialized = true;
         });
       });
     }, 2000, true);
+
+    watcher.on('all', parseFileAndWatchImports);
 
     parseFileAndWatchImports();
   }
