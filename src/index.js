@@ -77,25 +77,16 @@
       });
     }
 
-    function watchFiles (filePaths) {
-      watchedPaths = filePaths;
-      watcher.add(watchedPaths);
-    }
-
-    function destroyWatchers () {
-      watcher.unwatch(watchedPaths);
-    }
-
     parseFileAndWatchImports = _.debounce(function () {
       readFile(inputFilePath, function (result) {
         parseLess(result, function (output) {
-          destroyWatchers();
+          watcher.unwatch(watchedPaths);
 
           outputCSS(output.css);
-
-          watchFiles(output.imports);
-
           initialized = true;
+
+          watchedPaths = output.imports;
+          watcher.add(watchedPaths);
         });
       });
     }, 2000, true);
