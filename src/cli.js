@@ -15,13 +15,18 @@
     .options({
       input: {
         alias: 'i',
-        description: 'Path to input less file',
+        description: 'Path to input LESS file',
         type: 'string'
       },
       output: {
         alias: 'o',
-        description: 'Path to output css file',
+        description: 'Path to output CSS file',
         type: 'string'
+      },
+      compress: {
+        alias: 'c',
+        description: 'Compress the output file',
+        type: 'boolean'
       }
     })
     .demandOption(['input', 'output'], 'Please provide both input and output paths')
@@ -42,10 +47,10 @@
     );
   } else if (inputs.length > 1) {
     _.each(inputs, function (input, index) {
-      watchLessDoMore({input: input, output: outputs[index]});
+      watchLessDoMore({input: input, output: outputs[index], compress: argv.compress});
     });
   } else {
-    watchLessDoMore({input: inputs[0], output: outputs[0]});
+    watchLessDoMore({input: inputs[0], output: outputs[0], compress: argv.compress});
   }
 
 })();
