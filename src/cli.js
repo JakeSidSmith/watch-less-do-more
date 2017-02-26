@@ -47,10 +47,18 @@
     );
   } else if (inputs.length > 1) {
     _.each(inputs, function (input, index) {
-      watchLessDoMore({input: input, output: outputs[index], compress: argv.compress});
+      watchLessDoMore({
+        input: input,
+        output: outputs[index],
+        compress: argv.compress
+      });
     });
   } else {
-    watchLessDoMore({input: inputs[0], output: outputs[0], compress: argv.compress});
+    watchLessDoMore({
+      input: inputs[0],
+      output: outputs[0],
+      compress: argv.compress
+    });
   }
 
 })();
