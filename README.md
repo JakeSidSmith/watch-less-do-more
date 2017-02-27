@@ -4,7 +4,7 @@ Watch less files and their dependency tree for changes & automatically recompile
 
 ## About
 
-Rather than watching a directory for changes in any files, like other watchers, watch-less-do-more watches your main less file and automatically watches only its dependencies. If the main files, or any of it's dependencies change, the main file is compiled. This also allows you to watch multiple main files in a directory, and only compile the ones that have either changed themselves, or have had their dependencies changed. Additionally, this means that updating your node_modules (if any are dependencies of your less) will cause your less to recompile.
+Rather than watching a directory for changes in any files, like other watchers, watch-less-do-more watches your main less file and automatically watches only its dependencies. If the main file, or any of it's dependencies change, the main file is compiled. This also allows you to watch multiple main files in a directory, and only compile the ones that have either changed themselves, or have had their dependencies changed. Additionally, this means that updating your node_modules (if any are dependencies of your less) will cause your less to recompile.
 
 ## Example
 
@@ -63,7 +63,7 @@ You can define as many files as you like, as long as there is an output argument
 
 ### Options
 
-Run the following to display a full list of options
+If installed globally run the following to display a full list of options
 
 ```shell
 watch-less-do-more --help
