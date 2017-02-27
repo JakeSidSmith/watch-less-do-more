@@ -25,15 +25,7 @@
     var watcher = chokidar.watch(inputFilePath, {persistent: true});
 
     var lessOptions = {
-      filename: inputFilePath,
-      compress: options.compress,
-      sourceMap: options.sourceMap ? {
-        sourceMapURL: options.sourceMapURL,
-        sourceMapBasepath: options.sourceMapBasepath,
-        sourceMapRootpath: options.sourceMapRootpath,
-        outputSourceFiles: options.outputSourceFiles,
-        sourceMapFileInline: options.sourceMapFileInline
-      } : false
+      filename: inputFilePath
     };
 
     function readFile (filePath, callback) {

@@ -23,32 +23,6 @@
         description: 'Path to output CSS file',
         type: 'string'
       }
-      /*
-      ,
-      'compress': {
-        alias: 'c',
-        description: 'Compress the output file',
-        type: 'boolean'
-      },
-      'source-map': {
-        alias: 'm'
-      },
-      'source-map-url': {
-
-      },
-      'source-map-basepath': {
-
-      },
-      'source-map-rootpath': {
-
-      },
-      'output-source-files': {
-
-      },
-      'source-map-file-inline': {
-
-      }
-      */
     })
     .demandOption(['input', 'output'], 'Please provide both input and output paths')
     .help()
@@ -72,15 +46,13 @@
     _.each(inputs, function (input, index) {
       watchLessDoMore({
         input: input,
-        output: outputs[index],
-        compress: argv.compress
+        output: outputs[index]
       });
     });
   } else {
     watchLessDoMore({
       input: inputs[0],
-      output: outputs[0],
-      compress: argv.compress
+      output: outputs[0]
     });
   }
 
