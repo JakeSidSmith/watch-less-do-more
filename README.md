@@ -1,4 +1,4 @@
-# watch-less-do-more
+# watch-less-do-more [![CircleCI](https://circleci.com/gh/JakeSidSmith/watch-less-do-more.svg?style=svg)](https://circleci.com/gh/JakeSidSmith/watch-less-do-more)
 
 Watch less files and their dependency tree for changes & automatically recompile
 
@@ -10,7 +10,7 @@ Rather than watching a directory for changes in any files, like other watchers, 
 
 If we have the following files
 
-```shell
+```
 main-a.less
 main-b.less
 dependency-of-a.less
