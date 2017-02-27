@@ -13,26 +13,49 @@
     .usage('$0 -i=source.less -o=build.css')
     .example('$0 -i=source-1.less -i=source-2.less -o=build-1.css -o=build-2.css', 'Watch mutliple less files')
     .options({
-      input: {
+      'input': {
         alias: 'i',
         description: 'Path to input LESS file',
         type: 'string'
       },
-      output: {
+      'output': {
         alias: 'o',
         description: 'Path to output CSS file',
         type: 'string'
-      },
-      compress: {
+      }
+      /*
+      ,
+      'compress': {
         alias: 'c',
         description: 'Compress the output file',
         type: 'boolean'
+      },
+      'source-map': {
+        alias: 'm'
+      },
+      'source-map-url': {
+
+      },
+      'source-map-basepath': {
+
+      },
+      'source-map-rootpath': {
+
+      },
+      'output-source-files': {
+
+      },
+      'source-map-file-inline': {
+
       }
+      */
     })
     .demandOption(['input', 'output'], 'Please provide both input and output paths')
     .help()
     .version()
     .argv;
+
+  // console.log(argv);
 
   var inputs = [].concat(argv.input);
   var outputs = [].concat(argv.output);
