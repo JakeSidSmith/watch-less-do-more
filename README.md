@@ -66,6 +66,7 @@ You can define as many files as you like, as long as there is an output argument
 ```shell
 --input, -i   Path to input LESS file                      [string] [required]
 --output, -o  Path to output CSS file                      [string] [required]
+--use, -u     PostCSS module to use                                   [string]
 --help        Show help                                              [boolean]
 --version     Show version number                                    [boolean]
 ```
