@@ -22,6 +22,11 @@
         alias: 'o',
         description: 'Path to output CSS file',
         type: 'string'
+      },
+      'use': {
+        alias: 'u',
+        description: 'PostCSS module to use',
+        type: 'string'
       }
     })
     .demandOption(['input', 'output'], 'Please provide both input and output paths')
@@ -31,6 +36,7 @@
 
   var inputs = typeof argv.input !== 'undefined' ? [].concat(argv.input) : [];
   var outputs = typeof argv.output !== 'undefined' ? [].concat(argv.output) : [];
+  var use = typeof argv.use !== 'undefined' ? [].concat(argv.use) : [];
 
   if (inputs.length !== outputs.length) {
     console.error(
@@ -44,13 +50,15 @@
     _.each(inputs, function (input, index) {
       watchLessDoMore({
         input: input,
-        output: outputs[index]
+        output: outputs[index],
+        use: use
       });
     });
   } else {
     watchLessDoMore({
       input: inputs[0],
-      output: outputs[0]
+      output: outputs[0],
+      use: use
     });
   }
 
