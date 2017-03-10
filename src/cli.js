@@ -29,8 +29,8 @@
     .version()
     .argv;
 
-  var inputs = [].concat(argv.input);
-  var outputs = [].concat(argv.output);
+  var inputs = typeof argv.input !== 'undefined' ? [].concat(argv.input) : [];
+  var outputs = typeof argv.output !== 'undefined' ? [].concat(argv.output) : [];
 
   if (inputs.length !== outputs.length) {
     console.error(
