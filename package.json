@@ -6,7 +6,7 @@
   "bin": "src/cli.js",
   "scripts": {
     "start": "http-server examples/ -c-0 -o",
-    "watch": "src/cli.js -i examples/src/index.less -o examples/build/index.css",
+    "watch": "src/cli.js -u atoprefixer -i examples/src/index.less -o examples/build/index.css",
     "test": "eslint src/"
   },
   "repository": {

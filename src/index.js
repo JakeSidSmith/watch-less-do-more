@@ -15,12 +15,24 @@
 
   function watchLessDoMore (options) {
 
+    var libs;
     var initialized = false;
     var parseFileAndWatchImports;
     var watchedPaths = [];
     var inputFilePath = path.resolve(options.input);
     var outputFilePath = path.resolve(options.output);
     var outputDirectory = path.dirname(outputFilePath);
+
+    try {
+      libs = options.use.map(function (lib) {
+        return require(lib);
+      });
+    } catch (error) {
+      console.error(error.message);
+      process.exit(1);
+    }
+
+    var processor = postcss(libs);
 
     var watcher = chokidar.watch(inputFilePath, {persistent: true});
 
@@ -32,12 +44,7 @@
       if (!options.use.length) {
         callback(css);
       } else {
-
-        var libs = options.use.map(function (lib) {
-          return require(lib);
-        });
-
-        return postcss(libs)
+        processor
           .process(css)
           .then(function (result) {
             callback(result.css);
