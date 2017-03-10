@@ -15,7 +15,7 @@
 
   function watchLessDoMore (options) {
 
-    var libs;
+    var libs, processor;
     var initialized = false;
     var parseFileAndWatchImports;
     var watchedPaths = [];
@@ -23,16 +23,18 @@
     var outputFilePath = path.resolve(options.output);
     var outputDirectory = path.dirname(outputFilePath);
 
-    try {
-      libs = options.use.map(function (lib) {
-        return require(lib);
-      });
-    } catch (error) {
-      console.error(error.message);
-      process.exit(1);
-    }
+    if (options.use.length) {
+      try {
+        libs = options.use.map(function (lib) {
+          return require(lib);
+        });
 
-    var processor = postcss(libs);
+        processor = postcss(libs);
+      } catch (error) {
+        console.error(error.message);
+        process.exit(1);
+      }
+    }
 
     var watcher = chokidar.watch(inputFilePath, {persistent: true});
 
@@ -41,7 +43,7 @@
     };
 
     function postProcess (css, callback) {
-      if (!options.use.length) {
+      if (!processor) {
         callback(css);
       } else {
         processor
