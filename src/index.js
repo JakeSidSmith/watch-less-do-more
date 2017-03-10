@@ -9,6 +9,7 @@
   var chokidar = require('chokidar');
   var mkdirp = require('mkdirp');
   var less = require('less');
+  var postcss = require('postcss');
 
   var UTF8 = 'utf8';
 
@@ -26,6 +27,23 @@
     var lessOptions = {
       filename: inputFilePath
     };
+
+    function postProcess (css, callback) {
+      if (!options.use.length) {
+        callback(css);
+      } else {
+
+        var libs = options.use.map(function (lib) {
+          return require(lib);
+        });
+
+        return postcss(libs)
+          .process(css)
+          .then(function (result) {
+            callback(result.css);
+          });
+      }
+    }
 
     function readFile (filePath, callback) {
       fs.readFile(filePath, UTF8, function (error, result) {
@@ -64,6 +82,8 @@
           fs.writeFile(outputFilePath, css, UTF8, function () {
             console.log('Built ' + options.output);
           });
+
+          initialized = true;
         }
       });
     }
@@ -73,8 +93,7 @@
         parseLess(result, function (output) {
           watcher.unwatch(watchedPaths);
 
-          outputCSS(output.css);
-          initialized = true;
+          postProcess(output.css, outputCSS);
 
           watchedPaths = output.imports;
           watcher.add(watchedPaths);
