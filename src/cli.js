@@ -29,8 +29,6 @@
     .version()
     .argv;
 
-  // console.log(argv);
-
   var inputs = [].concat(argv.input);
   var outputs = [].concat(argv.output);
 

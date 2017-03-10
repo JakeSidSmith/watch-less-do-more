@@ -11,7 +11,6 @@
   var less = require('less');
 
   var UTF8 = 'utf8';
-  // var CWD = process.cwd();
 
   function watchLessDoMore (options) {
 
