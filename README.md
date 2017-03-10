@@ -63,8 +63,9 @@ You can define as many files as you like, as long as there is an output argument
 
 ### Options
 
-If installed globally run the following to display a full list of options
-
 ```shell
-watch-less-do-more --help
+--input, -i   Path to input LESS file                      [string] [required]
+--output, -o  Path to output CSS file                      [string] [required]
+--help        Show help                                              [boolean]
+--version     Show version number                                    [boolean]
 ```
