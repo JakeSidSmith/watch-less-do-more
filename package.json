@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/jakesidsmith/watch-less-do-more#readme",
   "devDependencies": {
+    "autoprefixer": "6.7.6",
     "bootstrap": "3.3.7",
     "eslint-config-jakesidsmith": "git+https://github.com/jakesidsmith/eslint-config-jakesidsmith.git",
     "http-server": "0.9.0"
@@ -37,6 +38,7 @@
     "chokidar": "1.6.1",
     "less": "2.7.2",
     "mkdirp": "0.5.1",
+    "postcss": "5.2.16",
     "underscore": "1.8.3",
     "yargs": "6.6.0"
   }
