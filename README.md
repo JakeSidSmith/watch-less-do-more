@@ -61,6 +61,17 @@ You can define as many files as you like, as long as there is an output argument
 }
 ```
 
+### PostCSS
+
+You can use PostCSS modules with watch-less-do-more incredibly easily.
+Just install the modules you want, and tell watch-less-do-more to use them in the same way you would with PostCSS.
+
+```json
+{
+  "watch-less": "watch-less-do-more -u autoprefixer -i source.less -o output.css"
+}
+```
+
 ### Options
 
 ```shell
