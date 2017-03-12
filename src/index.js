@@ -5,7 +5,7 @@
   var path = require('path');
   var fs = require('fs');
 
-  var _ = require('underscore');
+  var map = require('lodash.map');
   var chokidar = require('chokidar');
   var mkdirp = require('mkdirp');
   var less = require('less');
@@ -25,7 +25,7 @@
 
     if (options.use.length) {
       try {
-        libs = _.map(options.use, function (lib) {
+        libs = map(options.use, function (lib) {
           return require(lib);
         });
 

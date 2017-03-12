@@ -4,7 +4,7 @@
 
 (function () {
 
-  var _ = require('underscore');
+  var forEach = require('lodash.foreach');
   var yargs = require('yargs');
 
   var watchLessDoMore = require('./index');
@@ -47,7 +47,7 @@
       ' output paths provided'
     );
   } else if (inputs.length > 1) {
-    _.each(inputs, function (input, index) {
+    forEach(inputs, function (input, index) {
       watchLessDoMore({
         input: input,
         output: outputs[index],
