@@ -25,7 +25,7 @@
 
     if (options.use.length) {
       try {
-        libs = options.use.map(function (lib) {
+        libs = _.map(options.use, function (lib) {
           return require(lib);
         });
 
