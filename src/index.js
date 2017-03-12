@@ -50,6 +50,12 @@
           .process(css)
           .then(function (result) {
             callback(result.css);
+          })
+          .catch(function (error) {
+            console.log(error);
+            if (!initialized) {
+              process.exit(1);
+            }
           });
       }
     }
