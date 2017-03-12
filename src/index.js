@@ -97,18 +97,20 @@
       });
     }
 
-    parseFileAndWatchImports = _.debounce(function () {
-      readFile(inputFilePath, function (result) {
-        parseLess(result, function (output) {
-          watcher.unwatch(watchedPaths);
+    function parseFileAndWatchImports (eventType) {
+      if (eventType !== 'add') {
+        readFile(inputFilePath, function (result) {
+          parseLess(result, function (output) {
+            watcher.unwatch(watchedPaths);
 
-          postProcess(output.css, outputCSS);
+            postProcess(output.css, outputCSS);
 
-          watchedPaths = output.imports;
-          watcher.add(watchedPaths);
+            watchedPaths = output.imports;
+            watcher.add(watchedPaths);
+          });
         });
-      });
-    }, 2000, true);
+      }
+    }
 
     watcher.on('all', parseFileAndWatchImports);
 
