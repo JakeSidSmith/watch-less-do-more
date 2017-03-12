@@ -112,7 +112,7 @@
 
     watcher.on('all', parseFileAndWatchImports);
 
-    parseFileAndWatchImports();
+    parseFileAndWatchImports('init');
   }
 
   module.exports = watchLessDoMore;
