@@ -1,11 +1,12 @@
 {
   "name": "watch-less-do-more",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Watch less files and their dependency tree for changes & automatically recompile",
   "main": "src/index.js",
   "bin": "src/cli.js",
   "scripts": {
     "start": "http-server examples/ -c-0 -o",
+    "watch": "src/cli.js -u autoprefixer -i examples/src/index.less -o examples/build/index.css",
     "test": "eslint src/"
   },
   "repository": {
@@ -28,18 +29,24 @@
   },
   "homepage": "https://github.com/jakesidsmith/watch-less-do-more#readme",
   "devDependencies": {
+    "autoprefixer": "6.7.6",
     "bootstrap": "3.3.7",
     "eslint-config-jakesidsmith": "git+https://github.com/jakesidsmith/eslint-config-jakesidsmith.git",
-    "http-server": "0.9.0"
+    "http-server": "0.9.0",
+    "less": "2.7.2",
+    "postcss": "5.2.16"
   },
   "dependencies": {
     "chokidar": "1.6.1",
-    "less": "2.7.2",
+    "lodash.foreach": "4.5.0",
+    "lodash.map": "4.6.0",
     "mkdirp": "0.5.1",
-    "underscore": "1.8.3",
     "yargs": "6.6.0"
   },
   "peerDependencies": {
     "less": "2.x"
+  },
+  "optionalDependencies": {
+    "postcss": "5.x"
   }
 }

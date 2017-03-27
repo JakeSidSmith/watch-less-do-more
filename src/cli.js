@@ -4,7 +4,7 @@
 
 (function () {
 
-  var _ = require('underscore');
+  var forEach = require('lodash.foreach');
   var yargs = require('yargs');
 
   var watchLessDoMore = require('./index');
@@ -22,6 +22,11 @@
         alias: 'o',
         description: 'Path to output CSS file',
         type: 'string'
+      },
+      'use': {
+        alias: 'u',
+        description: 'PostCSS module to use',
+        type: 'string'
       }
     })
     .demandOption(['input', 'output'], 'Please provide both input and output paths')
@@ -29,10 +34,9 @@
     .version()
     .argv;
 
-  // console.log(argv);
-
-  var inputs = [].concat(argv.input);
-  var outputs = [].concat(argv.output);
+  var inputs = typeof argv.input !== 'undefined' ? [].concat(argv.input) : [];
+  var outputs = typeof argv.output !== 'undefined' ? [].concat(argv.output) : [];
+  var use = typeof argv.use !== 'undefined' ? [].concat(argv.use) : [];
 
   if (inputs.length !== outputs.length) {
     console.error(
@@ -43,16 +47,18 @@
       ' output paths provided'
     );
   } else if (inputs.length > 1) {
-    _.each(inputs, function (input, index) {
+    forEach(inputs, function (input, index) {
       watchLessDoMore({
         input: input,
-        output: outputs[index]
+        output: outputs[index],
+        use: use
       });
     });
   } else {
     watchLessDoMore({
       input: inputs[0],
-      output: outputs[0]
+      output: outputs[0],
+      use: use
     });
   }
 

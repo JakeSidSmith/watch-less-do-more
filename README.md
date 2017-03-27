@@ -35,10 +35,18 @@ watch-less-do-more -i main-a.less -o main-a.css -i main-b.less -o main-b.css
 
 ## Install
 
-Install watch-less-do-more and less. Currently supports less `2.x.x`.
+Install watch-less-do-more. You'll also need to install less.
+Currently supports less `2.x.x`.
 
 ```shell
-npm install less watch-less-do-more --save
+npm install watch-less-do-more less --save
+```
+
+Optionally install postcss if you want to use postcss modules.
+Currently supports postcss `5.x.x`.
+
+```shell
+npm install postcss --save
 ```
 
 ## Usage
@@ -63,10 +71,23 @@ You can define as many files as you like, as long as there is an output argument
 }
 ```
 
+### PostCSS
+
+You can use PostCSS modules with watch-less-do-more incredibly easily.
+Just install the modules you want, and tell watch-less-do-more to use them in the same way you would with PostCSS.
+
+```json
+{
+  "watch-less": "watch-less-do-more -u autoprefixer -i source.less -o output.css"
+}
+```
+
 ### Options
 
-If installed globally run the following to display a full list of options
-
 ```shell
-watch-less-do-more --help
+--input, -i   Path to input LESS file                      [string] [required]
+--output, -o  Path to output CSS file                      [string] [required]
+--use, -u     PostCSS module to use                                   [string]
+--help        Show help                                              [boolean]
+--version     Show version number                                    [boolean]
 ```
