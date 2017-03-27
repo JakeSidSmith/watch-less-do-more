@@ -45,6 +45,6 @@
   },
   "peerDependencies": {
     "less": "2.x",
-    "postcss": ">= 5 < 6"
+    "postcss": "5.x"
   }
 }
