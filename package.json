@@ -1,6 +1,6 @@
 {
   "name": "watch-less-do-more",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Watch less files and their dependency tree for changes & automatically recompile",
   "main": "src/index.js",
   "bin": "src/cli.js",
@@ -38,5 +38,8 @@
     "mkdirp": "0.5.1",
     "underscore": "1.8.3",
     "yargs": "6.6.0"
+  },
+  "peerDependencies": {
+    "less": "2.x"
   }
 }
