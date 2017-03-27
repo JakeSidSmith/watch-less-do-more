@@ -9,7 +9,7 @@
   var chokidar = require('chokidar');
   var mkdirp = require('mkdirp');
   var less = require('less');
-  var postcss = require('postcss');
+  var postcss;
 
   var UTF8 = 'utf8';
 
@@ -24,6 +24,14 @@
     var outputDirectory = path.dirname(outputFilePath);
 
     if (options.use.length) {
+      try {
+        postcss = require('postcss');
+      } catch (error) {
+        console.error('Optional dependency \'postcss\' is required to use postcss modules');
+        console.error(error.message);
+        process.exit(1);
+      }
+
       try {
         libs = map(options.use, function (lib) {
           return require(lib);
