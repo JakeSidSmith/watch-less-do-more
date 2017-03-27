@@ -40,6 +40,6 @@
     "yargs": "6.6.0"
   },
   "peerDependencies": {
-    "less": ">= 2 < 3"
+    "less": "2.x"
   }
 }
