@@ -33,8 +33,7 @@
     "bootstrap": "3.3.7",
     "eslint-config-jakesidsmith": "git+https://github.com/jakesidsmith/eslint-config-jakesidsmith.git",
     "http-server": "0.9.0",
-    "less": "2.7.2",
-    "postcss": "5.2.16"
+    "less": "2.7.2"
   },
   "dependencies": {
     "chokidar": "2.0.0",
