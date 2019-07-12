@@ -39,15 +39,15 @@ jobs:
       - run:
           name: Test
           command: npm test
-      - run:
-          name: Dist
-          command: npm run dist
+      # - run:
+      #     name: Dist
+      #     command: npm run dist
       # - run:
       #     name: Build docs
       #     command: npm run build
-      - store_artifacts:
-          path: coverage
-          prefix: coverage
+      # - store_artifacts:
+      #     path: coverage
+      #     prefix: coverage
       # - persist_to_workspace:
       #     root: .
       #     paths:
