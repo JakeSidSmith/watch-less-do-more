@@ -47,5 +47,8 @@
   },
   "optionalDependencies": {
     "postcss": "5.x"
+  },
+  "engines": {
+    "node": ">= 8"
   }
 }
