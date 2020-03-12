@@ -39,7 +39,7 @@
     "chokidar": "^3.0.2",
     "lodash.foreach": "^4.5.0",
     "lodash.map": "^4.6.0",
-    "mkdirp": "^0.5.1",
+    "mkdirp": "^1.0.0",
     "yargs": "^6.6.0"
   },
   "peerDependencies": {
