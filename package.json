@@ -40,7 +40,7 @@
     "lodash.foreach": "^4.5.0",
     "lodash.map": "^4.6.0",
     "mkdirp": "^0.5.1",
-    "yargs": "^6.6.0"
+    "yargs": "^15.0.1"
   },
   "peerDependencies": {
     "less": "3.x"
