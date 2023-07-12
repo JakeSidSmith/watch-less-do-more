@@ -43,10 +43,10 @@
     "yargs": "^6.6.0"
   },
   "peerDependencies": {
-    "less": "2.x"
+    "less": "^2.7.3"
   },
   "optionalDependencies": {
-    "postcss": "5.x"
+    "postcss": "^5.0.0"
   },
   "engines": {
     "node": ">= 8"
